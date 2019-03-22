@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    >
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="15dp"
+        app:cardUseCompatPadding="true"
+        >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    tools:context=".doaatypespackage.viws.fragments.DoaaTypesFragment">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_astkhara_title"
+        android:textStyle="bold"
+        android:layout_marginTop="7dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_strkhra_btn" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_sgwd_title"
+        android:textStyle="bold"
+        android:background="@drawable/round_white_bg"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:id="@+id/doaa_tlawa_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_dkhwl_hmam_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_khlah_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_wdwa_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_wdoo_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_safr_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/round_white_bg"
+        android:id="@+id/doaa_sfar_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_msgd_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/round_white_bg"
+        android:id="@+id/doaa_msgd_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_dkhwl_mnzl_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_mnzl_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/round_white_bg"
+        android:text="@string/doaa_t3am_title"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/doaa_food_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_mzakra_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_mzakra_btn" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/doaa_mlabs_title"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:background="@drawable/round_white_bg"
+        android:textSize="20sp"
+        android:id="@+id/doaa_mlabs_btn" />
+
+</LinearLayout>
+    </android.support.v7.widget.CardView>
+</ScrollView>

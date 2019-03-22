@@ -1,0 +1,40 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">124dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="button_width">300dp</dimen>
+    <dimen name="splash_logo_width">200dp</dimen>
+    <dimen name="meduim_logo_size">150dp</dimen>
+    <dimen name="black_round_radius">25dp</dimen>
+    <dimen name="bottom_button_height">55dp</dimen>
+    <dimen name="where_to_bar_height">60dp</dimen>
+    <dimen name="context_icon_size">60dp</dimen>
+    <dimen name="button_icon_padding">25dp</dimen>
+    <dimen name="margin_56">56dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="button_corner_radius">50dp</dimen>
+    <dimen name="snap_map_height">150dp</dimen>
+    <dimen name="default_16">16dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="default_48">48dp</dimen>
+    <dimen name="default_36">36dp</dimen>
+    <dimen name="default_24">24dp</dimen>
+    <dimen name="default_8">8dp</dimen>
+    <dimen name="default_72">72dp</dimen>
+    <dimen name="default_84">84dp</dimen>
+    <dimen name="textInputLayoutMargin">20dp</dimen>
+    <dimen name="zoom_controls_padding">5dp</dimen>
+    <dimen name="default_124">124dp</dimen>
+    <dimen name="default_136">136dp</dimen>
+    <dimen name="default_4">4dp</dimen>
+    <dimen name="default_2">2dp</dimen>
+    <dimen name="tripIconSize">30dp</dimen>
+</resources>

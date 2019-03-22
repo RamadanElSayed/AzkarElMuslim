@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">أذكارالمسلم</string>
+    <string name="aya_start">الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</string>
+    <string name="doaa_title">أدعيةاسلامية</string>
+    <string name="azkary_title">أذكاري</string>
+    <string name="about_app_title">حول التطبيق</string>
+    <string name="close_app_title">أغلاق التطبيق</string>
+    <string name="azkar_title">أذكار المسلم</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="azkar_esteqz_title">أذكار الاستيقاظ</string>
+    <string name="azkar_nwm_title">أذكار النوم</string>
+    <string name="azkar_msa_title">أذكار المساء</string>
+    <string name="azkar_sbah_title">أذكار الصباح</string>
+    <string name="decrease_font_id">تصغير النص</string>
+    <string name="increase_font_id">تكبير النص</string>
+    <string name="increase_message">عفوا لايمكنك تكبير النص اكثر من ذلك</string>
+    <string name="decrease_message">عفوا لا يمكنك تصغير النص اكثر من ذلك</string>
+    <string name="doaa_astkhara_title">دعاء الاستخارة</string>
+    <string name="doaa_sgwd_title">دعاء سجود التلاوة</string>
+    <string name="doaa_dkhwl_hmam_title">دعاء دخول الخلاء والخروج منه</string>
+    <string name="doaa_wdwa_title">دعاء قبل الوضوء وبعد الانتهاء منه</string>
+    <string name="doaa_safr_title">دعاء السفر</string>
+    <string name="doaa_msgd_title">دعاء دخول المسجد والخروج منه</string>
+    <string name="doaa_dkhwl_mnzl_title">دعاء دخول المنزل والخروج منه</string>
+    <string name="doaa_t3am_title">دعاء تناول الطعام والانتهاء منه</string>
+    <string name="doaa_mzakra_title">دعاء المذاكرة</string>
+    <string name="doaa_mlabs_title">دعاء ارتداء الملابس</string>
+    <string name="adding_title">أضافة</string>
+    <string name="adding_azkar_title">يمكنك إضافة أذكار وأدعية خاصة بك</string>
+    <string name="adding_azkar_doaa_title">يمكنك إضافة أذكار وأدعية خاصة بك</string>
+    <string name="save_azkar_title">حفظ</string>
+    <string name="azkar_adding_title">من فضلك أدخل الذكر الذي تريد حفظه</string>
+    <string name="remove_azka_title">حذف الأذكار!!</string>
+    <string name="remove_azkar_content">هل تريد حذف هذا الذكر؟!!</string>
+    <string name="remove">حذف</string>
+    <string name="cancel">إلغاء</string>
+    <string name="about_app">عن التطبيق :</string>
+    <string name="app_details">تطبيق للأذكارات والأدعية الاسلامية المتنوعة..ويتميز بخاصية تكبير وتصغير النص ..وايضا يمكنك إضافة الأذكار الخاصة بك ويمكنك ايضا مسحها اذا اردت ذلك</string>
+    <string name="contact_me">للتواصل معي :-</string>
+    <string name="name_me">مطور :رمضان سيدعيد</string>
+    <string name="country_me">الدولة:مصر</string>
+    <string name="email_id">البريد الالكتروني ramadan.sayed@cis.asu.edu.eg</string>
+    <string name="phone_me">التلفون 01149274517</string>
+    <string name="azkar_elmuslim">أذكر الله فبذكر الله تطمئن القلوب</string>
+
+
+</resources>
