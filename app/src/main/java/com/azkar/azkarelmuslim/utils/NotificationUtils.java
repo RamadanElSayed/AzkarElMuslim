@@ -20,14 +20,10 @@ public class NotificationUtils {
     public static final int EARNING_ID = 3;
     public static final int DEFAULT_NOT_ID = 12;
     private static String TAG = NotificationUtils.class.getSimpleName();
-
     private Context mContext;
-
     public NotificationUtils(Context mContext) {
         this.mContext = mContext;
     }
-
-
 
     public void showNotificationMessage(final String message, Intent intent,int notifyId) {
 

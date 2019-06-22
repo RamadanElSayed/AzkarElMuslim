@@ -22,6 +22,7 @@ import com.azkar.azkarelmuslim.base.OnItemClickListener;
 import com.azkar.azkarelmuslim.utils.Messenger;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +33,7 @@ public class AzkarAsteqzFragment extends BaseFragment implements AzkarTypeView, 
     RecyclerView AzkarAsteqzRv;
     private AzkarSpecificTypeAdapter azkarSpecificTypeAdapter;
     private ArrayList<AzkarTypeModel> azkarTypeModels;
+    private AzkarAsteqzPresenterImpl azkarAsteqzPresenter;
 
     public static AzkarAsteqzFragment getInstance() {
         return new AzkarAsteqzFragment();
@@ -60,7 +62,7 @@ public class AzkarAsteqzFragment extends BaseFragment implements AzkarTypeView, 
 
     @Override
     protected void initPresenter() {
-        AzkarAsteqzPresenterImpl azkarAsteqzPresenter = new AzkarAsteqzPresenterImpl(this);
+        azkarAsteqzPresenter = new AzkarAsteqzPresenterImpl(this);
         azkarTypeModels = new ArrayList<>();
         azkarAsteqzPresenter.getAllAzkarOfSpecificType();
     }
@@ -72,7 +74,7 @@ public class AzkarAsteqzFragment extends BaseFragment implements AzkarTypeView, 
 
     @Override
     public void onItemClick(AzkarTypeModel azkarTypeModel) {
-        if (azkarTypeModel.getIncreaseOrDecrease().equals("IN")) {
+        if (azkarTypeModel.getIncreaseOrDecrease().equals(Objects.requireNonNull(getActivity()).getString(R.string.increase_font))) {
             if (azkarTypeModel.getAzkarSbahFont() < 40) {
                 float fontNow = azkarTypeModel.getAzkarSbahFont();
                 fontNow++;
@@ -82,7 +84,7 @@ public class AzkarAsteqzFragment extends BaseFragment implements AzkarTypeView, 
             }
             azkarTypeModels.set(azkarTypeModel.getIndexOfAzkarNow(), azkarTypeModel);
             azkarSpecificTypeAdapter.notifyDataSetChanged();
-        } else if (azkarTypeModel.getIncreaseOrDecrease().equals("DE")) {
+        } else if (azkarTypeModel.getIncreaseOrDecrease().equals(Objects.requireNonNull(getActivity()).getString(R.string.decrease_font))) {
             if (azkarTypeModel.getAzkarSbahFont() > 15) {
                 float fontNow = azkarTypeModel.getAzkarSbahFont();
                 fontNow--;
@@ -94,6 +96,19 @@ public class AzkarAsteqzFragment extends BaseFragment implements AzkarTypeView, 
             azkarTypeModels.set(azkarTypeModel.getIndexOfAzkarNow(), azkarTypeModel);
             azkarSpecificTypeAdapter.notifyDataSetChanged();
         }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        azkarAsteqzPresenter.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        azkarAsteqzPresenter.onDestroy();
 
     }
 }

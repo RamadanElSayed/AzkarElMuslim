@@ -25,7 +25,7 @@ public class DoaaWithOneTitleFragment extends BaseFragment implements DoaaOneTyp
     TextView doaaTitleOneText;
     @BindView(R.id.doaa_body_one_tv)
     TextView doaaBodyOneText;
-
+    private DoaaOneTypePresenterImpl doaaOneTypePresenter;
     public static DoaaWithOneTitleFragment getInstance() {
         return new DoaaWithOneTitleFragment();
     }
@@ -47,7 +47,7 @@ public class DoaaWithOneTitleFragment extends BaseFragment implements DoaaOneTyp
         if (arguments != null && arguments.containsKey(PointerOfDoaaType.DOAA_TYPE_ID)) {
 
             int typeId = Integer.valueOf(getArguments().getString(PointerOfDoaaType.DOAA_TYPE_ID));
-            DoaaOneTypePresenterImpl doaaOneTypePresenter = new DoaaOneTypePresenterImpl(getActivity(), this);
+            doaaOneTypePresenter = new DoaaOneTypePresenterImpl(getActivity(), this);
             doaaOneTypePresenter.getDoaaDataOneType(typeId);
 
         }
@@ -64,5 +64,17 @@ public class DoaaWithOneTitleFragment extends BaseFragment implements DoaaOneTyp
         doaaTypeText.setText(doaaOneTypeModel.getDoaaTitleType());
         doaaTitleOneText.setText(doaaOneTypeModel.getTitleDoaOne());
         doaaBodyOneText.setText(doaaOneTypeModel.getBodyDoaOne());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        doaaOneTypePresenter.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        doaaOneTypePresenter.onDestroy();
     }
 }

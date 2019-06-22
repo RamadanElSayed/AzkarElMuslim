@@ -30,7 +30,7 @@ public class DoaaTwoTitleFragment extends BaseFragment implements DoaaTypeTwoVie
     TextView doaaTitleTwoText;
     @BindView(R.id.doaa_body_two_tv)
     TextView doaaBodyTwoText;
-
+    private DoaTypeTwoPresenterImpl doaTypeTwoPresenter;
     public static DoaaTwoTitleFragment getInstance() {
         return new DoaaTwoTitleFragment();
     }
@@ -43,7 +43,6 @@ public class DoaaTwoTitleFragment extends BaseFragment implements DoaaTypeTwoVie
         return view;
     }
 
-
     @Override
     protected void initPresenter() {
         doaaTypeText.setText(null);
@@ -53,9 +52,8 @@ public class DoaaTwoTitleFragment extends BaseFragment implements DoaaTypeTwoVie
         doaaBodyTwoText.setText(null);
         Bundle arguments = getArguments();
         if (arguments != null && arguments.containsKey(PointerOfDoaaType.DOAA_TYPE_ID)) {
-
             int typeId = Integer.valueOf(getArguments().getString(PointerOfDoaaType.DOAA_TYPE_ID));
-            DoaTypeTwoPresenterImpl doaTypeTwoPresenter = new DoaTypeTwoPresenterImpl(getActivity(), this);
+            doaTypeTwoPresenter = new DoaTypeTwoPresenterImpl(getActivity(), this);
             doaTypeTwoPresenter.getDoaaDataOfSpecificType(typeId);
 
         }
@@ -74,5 +72,17 @@ public class DoaaTwoTitleFragment extends BaseFragment implements DoaaTypeTwoVie
         doaaBodyOneText.setText(doaaTwoTypesModel.getBodyDoaOne());
         doaaTitleTwoText.setText(doaaTwoTypesModel.getTitleDoaTwo());
         doaaBodyTwoText.setText(doaaTwoTypesModel.getBodyDoaTwo());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        doaTypeTwoPresenter.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        doaTypeTwoPresenter.onDestroy();
     }
 }

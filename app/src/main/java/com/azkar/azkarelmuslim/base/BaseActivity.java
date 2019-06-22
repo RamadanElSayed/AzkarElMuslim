@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.azkar.azkarelmuslim.R;
@@ -17,35 +18,31 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         new AlarmUtil(BaseActivity.this).setEarningAlarm(8);
         new AlarmUtil(BaseActivity.this).setEarningAlarm(20);
-
     }
-    protected void addFragment(Fragment fragment) {
+
+    public void  addFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(getContentViewId(), fragment);
         transaction.commit();
     }
-    public void replaceCurrentFragment( Fragment targetFragment, boolean addToBackStack) {
+
+    public void replaceCurrentFragment(Fragment targetFragment, boolean addToBackStack) {
 
         FragmentManager manager = getSupportFragmentManager();
-
         FragmentTransaction ft = manager.beginTransaction();
-
         ft.replace(getContentViewId(), targetFragment, targetFragment.getClass().getName());
         if (addToBackStack) {
+            Log.v("fra",targetFragment.getClass().getName());
             ft.addToBackStack(targetFragment.getClass().getName());
         }
         ft.commit();
-
-
     }
-
 
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
-        }
-        else {
+        } else {
             finish();
             super.onBackPressed();
         }

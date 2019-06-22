@@ -3,11 +3,18 @@ package com.azkar.azkarelmuslim.doaatypespackage.presenters.presenterimpl;
 import android.content.Context;
 
 import com.azkar.azkarelmuslim.R;
+import com.azkar.azkarelmuslim.azkartypespackage.models.AzkarTypeModel;
 import com.azkar.azkarelmuslim.base.BaseView;
 import com.azkar.azkarelmuslim.doaatypespackage.models.DoaaOneTypeModel;
 import com.azkar.azkarelmuslim.doaatypespackage.models.PointerOfDoaaType;
 import com.azkar.azkarelmuslim.doaatypespackage.presenters.presenter.DoaaOneTypePresenter;
 import com.azkar.azkarelmuslim.doaatypespackage.viws.interfaces.DoaaOneTypeView;
+
+import java.util.ArrayList;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public class DoaaOneTypePresenterImpl implements DoaaOneTypePresenter {
 
@@ -16,15 +23,45 @@ public class DoaaOneTypePresenterImpl implements DoaaOneTypePresenter {
     private String bodyDoaOne;
     private String doaaTitleType;
     private Context context;
+    private CompositeDisposable compositeDisposable;
 
 
     public DoaaOneTypePresenterImpl(Context mcontext, BaseView baseView) {
         context = mcontext;
+        compositeDisposable = new CompositeDisposable();
         setView(baseView);
+
     }
 
     @Override
     public void getDoaaDataOneType(int doaaType) {
+
+        Observable<DoaaOneTypeModel> azkatTypeObservable = Observable.just(
+                getDoaaTypeObject(doaaType)
+        );
+        Disposable doaaDataSubscription = azkatTypeObservable.
+                subscribe(doaaOneTypeModel -> doaaOneTypeView.onDoaaReceivedData(doaaOneTypeModel));
+        compositeDisposable.add(doaaDataSubscription);
+    }
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+    }
+
+    private DoaaOneTypeModel getDoaaTypeObject(int doaaType) {
         if (doaaType == PointerOfDoaaType.DOAA_ASTKHARA) {
             titleDoaOne = "عَنْ جَابِرٍ رضي الله عنه قَالَ : كَانَ رَسُولُ اللَّهِ صلى الله عليه وسلم يُعَلِّمُنَا الاسْتِخَارَةَ فِي الأُمُورِ كُلِّهَا كَمَا يُعَلِّمُنَا السُّورَةَ مِنْ الْقُرْآنِ يَقُولُ : إذَا هَمَّ أَحَدُكُمْ بِالأَمْرِ فَلْيَرْكَعْ رَكْعَتَيْنِ مِنْ غَيْرِ الْفَرِيضَةِ ثُمَّ لِيَقُلْ : ( اللَّهُمَّ إنِّي أَسْتَخِيرُكَ بِعِلْمِكَ , وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ , وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ فَإِنَّكَ تَقْدِرُ وَلا أَقْدِرُ , وَتَعْلَمُ وَلا أَعْلَمُ , وَأَنْتَ عَلامُ الْغُيُوبِ , اللَّهُمَّ إنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الأَمْرَ (هنا تسمي حاجتك ) خَيْرٌ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي أَوْ قَالَ : عَاجِلِ أَمْرِي وَآجِلِهِ , فَاقْدُرْهُ لِي وَيَسِّرْهُ لِي ثُمَّ بَارِكْ لِي فِيهِ , اللَّهُمَّ وَإِنْ كُنْتَ تَعْلَمُ أَنَّ هَذَا الأَمْرَ (هنا تسمي حاجتك ) شَرٌّ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي أَوْ قَالَ : عَاجِلِ أَمْرِي وَآجِلِهِ , فَاصْرِفْهُ عَنِّي وَاصْرِفْنِي عَنْهُ وَاقْدُرْ لِي الْخَيْرَ حَيْثُ كَانَ ثُمَّ ارْضِنِي بِهِ . وَيُسَمِّي حَاجَتَهُ ) وَفِي رواية ( ثُمَّ رَضِّنِي بِهِ( رَوَاهُ الْبُخَارِيُّ (1166) \n";
 
@@ -43,7 +80,7 @@ public class DoaaOneTypePresenterImpl implements DoaaOneTypePresenter {
         doaaOneTypeModel.setTitleDoaOne(titleDoaOne);
         doaaOneTypeModel.setBodyDoaOne(bodyDoaOne);
         doaaOneTypeModel.setDoaaTitleType(doaaTitleType);
-        doaaOneTypeView.onDoaaReceivedData(doaaOneTypeModel);
+        return doaaOneTypeModel;
     }
 
     @Override

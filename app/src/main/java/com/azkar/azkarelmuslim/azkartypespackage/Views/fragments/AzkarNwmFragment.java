@@ -22,6 +22,7 @@ import com.azkar.azkarelmuslim.base.OnItemClickListener;
 import com.azkar.azkarelmuslim.utils.Messenger;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,7 +74,7 @@ public class AzkarNwmFragment extends BaseFragment implements AzkarTypeView, OnI
 
     @Override
     public void onItemClick(AzkarTypeModel azkarTypeModel) {
-        if (azkarTypeModel.getIncreaseOrDecrease().equals("IN")) {
+        if (azkarTypeModel.getIncreaseOrDecrease().equals(Objects.requireNonNull(getActivity()).getString(R.string.increase_font))) {
             if (azkarTypeModel.getAzkarSbahFont() < 40) {
                 float fontNow = azkarTypeModel.getAzkarSbahFont();
                 fontNow++;
@@ -83,7 +84,7 @@ public class AzkarNwmFragment extends BaseFragment implements AzkarTypeView, OnI
             }
             azkarTypeModels.set(azkarTypeModel.getIndexOfAzkarNow(), azkarTypeModel);
             azkarSpecificTypeAdapter.notifyDataSetChanged();
-        } else if (azkarTypeModel.getIncreaseOrDecrease().equals("DE")) {
+        } else if (azkarTypeModel.getIncreaseOrDecrease().equals(Objects.requireNonNull(getActivity()).getString(R.string.decrease_font))) {
             if (azkarTypeModel.getAzkarSbahFont() > 15) {
                 float fontNow = azkarTypeModel.getAzkarSbahFont();
                 fontNow--;
@@ -96,6 +97,18 @@ public class AzkarNwmFragment extends BaseFragment implements AzkarTypeView, OnI
             azkarSpecificTypeAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        azkarNwmPresenter.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        azkarNwmPresenter.onDestroy();
 
     }
 }

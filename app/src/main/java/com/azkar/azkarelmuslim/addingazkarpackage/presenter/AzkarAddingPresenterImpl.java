@@ -29,24 +29,18 @@ public class AzkarAddingPresenterImpl implements AzkarAddingPresenter {
 
     @Override
     public void onSavingAzkarClicked(final String azkarTextAdding) {
-        Flowable<Boolean> booleanFlowable = Flowable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() {
-                AzkarModelDB azkarModelDB = new AzkarModelDB();
-                azkarModelDB.setAzkarId(System.currentTimeMillis());
-                azkarModelDB.setAzkarContent(azkarTextAdding);
-                azkarDao.insertAzkarData(azkarModelDB);
-                return true;
-            }
+        Flowable<Boolean> booleanFlowable = Flowable.fromCallable(() -> {
+            AzkarModelDB azkarModelDB = new AzkarModelDB();
+            azkarModelDB.setAzkarId(System.currentTimeMillis());
+            azkarModelDB.setAzkarContent(azkarTextAdding);
+            azkarDao.insertAzkarData(azkarModelDB);
+            return true;
         });
 
         Disposable disposable = booleanFlowable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
-                subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) {
-                        if (aBoolean) {
-                            savingAzkarView.onAzkarSavingDataDone();
-                        }
+                subscribe(aBoolean -> {
+                    if (aBoolean) {
+                        savingAzkarView.onAzkarSavingDataDone();
                     }
                 });
 
@@ -55,15 +49,26 @@ public class AzkarAddingPresenterImpl implements AzkarAddingPresenter {
     }
 
     @Override
+    public void setView(BaseView view) {
+        savingAzkarView = (SavingAzkarView) view;
+    }
+
+
+    @Override
     public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
         if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
             compositeDisposable.clear();
         }
     }
 
-    @Override
-    public void setView(BaseView view) {
-        savingAzkarView = (SavingAzkarView) view;
-    }
 }

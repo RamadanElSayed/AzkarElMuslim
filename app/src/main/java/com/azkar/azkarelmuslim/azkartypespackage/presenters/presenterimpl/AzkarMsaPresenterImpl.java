@@ -7,23 +7,61 @@ import com.azkar.azkarelmuslim.base.BaseView;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 public class AzkarMsaPresenterImpl implements AzkarTypePresenter {
 
     private AzkarTypeView azkarTypeView;
+    private CompositeDisposable compositeDisposable;
 
     public AzkarMsaPresenterImpl(BaseView baseView) {
         setView(baseView);
+        compositeDisposable = new CompositeDisposable();
     }
 
     @Override
     public void getAllAzkarOfSpecificType() {
+
+        Observable<ArrayList<AzkarTypeModel>> azkatTypeObservable = Observable.just(
+                getAzkarMsaList()
+        );
+        Disposable azkarTypeSubscription = azkatTypeObservable.
+                subscribe(asteqzModelArrayList -> azkarTypeView.onReceivedAzkarOfSpecificTypeList(asteqzModelArrayList));
+        compositeDisposable.add(azkarTypeSubscription);
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        azkarTypeView = (AzkarTypeView) view;
+
+    }
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+    }
+
+
+    private ArrayList<AzkarTypeModel> getAzkarMsaList() {
         ArrayList<AzkarTypeModel> msaModelArrayList = new ArrayList<>();
         String x1 = "اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ";
         String x11 = "تكرار مرة واحدة";
         msaModelArrayList.add(new AzkarTypeModel(x1, x11));
-
         String x2 = " بسم الله الرحمن الرحيم قُلْ هُوَ اللَّهُ أَحَدٌ اللَّهُ الصَّمَدُ لَمْ يَلِدْ وَلَمْ يُولَدْ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ .";
-
         String x22 = "تكرار ثلاث مرات";
         msaModelArrayList.add(new AzkarTypeModel(x2, x22));
         String x3 = "بسم الله الرحمن الرحيم. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ. مِن شَرِّ مَا خَلَقَ. وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ. وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ. وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ.";
@@ -41,25 +79,22 @@ public class AzkarMsaPresenterImpl implements AzkarTypePresenter {
         msaModelArrayList.add(new AzkarTypeModel(x6, x66));
         String x7 = "أمسينا وأمسى الملك لله والحمد لله ، لا اله إلا الله وحده لا شريك له ، له الملك وله الحمد ، وهو على كل شيء قدير ، ربي أسألك خير ما في هذا الليلة وخير ما بعدها ، أعوذ بك من شر ما في هذا الليلة وشر ما بعدها ، ربي أعوذ بك من الكسل وسوء الكبر ، ربي أعوذ بك من عذاب في النار وعذاب في القبر";
         String x77 = "مرة واحدة";
-        msaModelArrayList.add(new AzkarTypeModel(x1, x11));
+        msaModelArrayList.add(new AzkarTypeModel(x7, x77));
         String x8 = "أمسينا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد صلى الله عليه وسلم وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.\n";
         String x88 = "مرة واحدة";
         msaModelArrayList.add(new AzkarTypeModel(x8, x88));
         String x9 = "اللهم بك أمسينا وبك أصبحنا ، وبك نحيا وبك نموت وإليك المصير.\n";
         String x99 = "مرة واحدة";
-
-
         msaModelArrayList.add(new AzkarTypeModel(x9, x99));
         String x10 = "اللهم إني أسألك العافية في الدنيا والآخرة ، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي ، اللهم أستر عوراتي ، وآمن روعاتي اللهم احفظني من بين يدي ، ومن خلفي وعن يميني ، وعن شمالي ، ومن فوقي ، وأعوذ بعظمتك أن اغتال من تحتي.";
         String x1010 = "مرة واحدة";
+        msaModelArrayList.add(new AzkarTypeModel(x10, x1010));
         String x111 = "بسـم الله الـذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم";
         String x1111 = "تكرار ثلاث مرات ";
         msaModelArrayList.add(new AzkarTypeModel(x111, x1111));
-
         String x222 = "رضيت بالله ربا وبالإسلام دين وبمحمد صلى الله عليه وسلم نبياً";
         String x2222 = "تكرار ثلاث مرات ";
         msaModelArrayList.add(new AzkarTypeModel(x222, x2222));
-
         String x333 = "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم. (من قالها 7 مرات كفاه الله ما أهمه)";
         String x3333 = "تكرار سبع مرات";
         msaModelArrayList.add(new AzkarTypeModel(x333, x3333));
@@ -80,22 +115,14 @@ public class AzkarMsaPresenterImpl implements AzkarTypePresenter {
         msaModelArrayList.add(new AzkarTypeModel(x888, x8888));
         String x999 = "أعوذ بكلمات الله التامات من شر ماخلق\t";
         String x9999 = "ثلاث مرات";
-
         msaModelArrayList.add(new AzkarTypeModel(x999, x9999));
-
         String x101010 = "اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك , فلك الحمد ولك الشكر ";
         String x10101010 = "ثلاث مرات";
         String x11111 = "اللهم صل وسلم على نبينا محمد\" ";
         String x111111 = "عشر مرات";
         msaModelArrayList.add(new AzkarTypeModel(x11111, x111111));
         msaModelArrayList.add(new AzkarTypeModel(x101010, x10101010));
-        azkarTypeView.onReceivedAzkarOfSpecificTypeList(msaModelArrayList);
-
+        return msaModelArrayList;
     }
 
-    @Override
-    public void setView(BaseView view) {
-        azkarTypeView = (AzkarTypeView) view;
-
-    }
 }

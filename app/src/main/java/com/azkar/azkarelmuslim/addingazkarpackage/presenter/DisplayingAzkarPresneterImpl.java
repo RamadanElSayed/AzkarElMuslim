@@ -41,28 +41,37 @@ public class DisplayingAzkarPresneterImpl implements DisplayingAzkarPresneter {
     }
 
     @Override
-    public void onStop() {
-        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-            compositeDisposable.clear();
-        }
-    }
-
-    @Override
     public void deleteAzkarOnClicked(Long azkarId) {
 
-        Completable completable=  Completable.fromAction(() -> azkarDao.deleteAzkarById(azkarId));
+        Completable completable = Completable.fromAction(() -> azkarDao.deleteAzkarById(azkarId));
 
-        Disposable disposable= completable.subscribeOn(io.reactivex.schedulers.Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+        Disposable disposable = completable.subscribeOn(io.reactivex.schedulers.Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
                 subscribe(() -> {
                     displayingAzkarView.dismissRemovingAzkarDialog();
                 });
 
-           compositeDisposable.add(disposable);
+        compositeDisposable.add(disposable);
     }
 
     @Override
     public void setView(BaseView view) {
         displayingAzkarView = (DisplayingAzkarView) view;
+    }
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
     }
 }

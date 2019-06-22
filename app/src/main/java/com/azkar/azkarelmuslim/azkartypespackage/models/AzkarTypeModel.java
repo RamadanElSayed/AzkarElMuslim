@@ -3,11 +3,9 @@ package com.azkar.azkarelmuslim.azkartypespackage.models;
 public class AzkarTypeModel {
 
     private String azkarSbahText;
-
     private String periodAzkarSbah;
-
     private float azkarSbahFont = 23f;
-    private String IncreaseOrDecrease="";
+    private String IncreaseOrDecrease = "";
     private int indexOfAzkarNow;
 
     public String getIncreaseOrDecrease() {

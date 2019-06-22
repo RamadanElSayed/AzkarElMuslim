@@ -3,6 +3,7 @@ package com.azkar.azkarelmuslim.addingazkarpackage.views.fragments;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.azkar.azkarelmuslim.base.BaseApplication;
 import com.azkar.azkarelmuslim.base.BaseFragment;
 import com.azkar.azkarelmuslim.database.AzkarDao;
 import com.azkar.azkarelmuslim.startpackageview.views.activities.StartAzkarActivity;
+import com.azkar.azkarelmuslim.utils.KeyboardUtil;
 import com.azkar.azkarelmuslim.utils.Messenger;
 
 import java.util.Objects;
@@ -37,7 +39,7 @@ public class AzkarAddingFragment extends BaseFragment implements SavingAzkarView
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_azkar_adding, container, false);
@@ -47,6 +49,7 @@ public class AzkarAddingFragment extends BaseFragment implements SavingAzkarView
 
     @OnClick(R.id.addBtn)
     void onBtnSavingClick() {
+        KeyboardUtil.dismissKeyboard(Objects.requireNonNull(getActivity()));
         String azkarTitle = azkarTextAdding.getText().toString();
         if (!azkarTitle.equals(""))
             addingPresenter.onSavingAzkarClicked(azkarTitle);
@@ -65,17 +68,23 @@ public class AzkarAddingFragment extends BaseFragment implements SavingAzkarView
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onAzkarSavingDataDone() {
+        AzkarDisplayingFragment azkarDisplayingFragment = AzkarDisplayingFragment.getInstance();
+
+        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarDisplayingFragment, false);
+    }
+
     @Override
     public void onStop() {
         super.onStop();
         addingPresenter.onStop();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public void onAzkarSavingDataDone() {
-        AzkarDisplayingFragment azkarDisplayingFragment = AzkarDisplayingFragment.getInstance();
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarDisplayingFragment, false);
-
+    public void onDestroy() {
+        super.onDestroy();
+        addingPresenter.onDestroy();
     }
 }

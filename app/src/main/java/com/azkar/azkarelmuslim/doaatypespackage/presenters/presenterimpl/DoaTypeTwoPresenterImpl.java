@@ -5,10 +5,15 @@ import android.util.Log;
 
 import com.azkar.azkarelmuslim.R;
 import com.azkar.azkarelmuslim.base.BaseView;
+import com.azkar.azkarelmuslim.doaatypespackage.models.DoaaOneTypeModel;
 import com.azkar.azkarelmuslim.doaatypespackage.models.DoaaTwoTypesModel;
 import com.azkar.azkarelmuslim.doaatypespackage.models.PointerOfDoaaType;
 import com.azkar.azkarelmuslim.doaatypespackage.presenters.presenter.DoaTypeTwoPresenter;
 import com.azkar.azkarelmuslim.doaatypespackage.viws.interfaces.DoaaTypeTwoView;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public class DoaTypeTwoPresenterImpl implements DoaTypeTwoPresenter {
     private DoaaTypeTwoView doaaTypeTwoView;
@@ -18,14 +23,51 @@ public class DoaTypeTwoPresenterImpl implements DoaTypeTwoPresenter {
     private String bodyDoaTwo;
     private String doaaTitleType;
     private Context context;
+    private CompositeDisposable compositeDisposable;
 
     public DoaTypeTwoPresenterImpl(Context mcontext, BaseView baseView) {
         context = mcontext;
+        compositeDisposable = new CompositeDisposable();
         setView(baseView);
     }
 
     @Override
     public void getDoaaDataOfSpecificType(int doaaType) {
+
+        Observable<DoaaTwoTypesModel> azkatTypeObservable = Observable.just(
+                getDoaaTypeObject(doaaType)
+        );
+        Disposable doaaDataSubscription = azkatTypeObservable.
+                subscribe(doaaTwoTypesModel -> doaaTypeTwoView.onDoaaReceivedData(doaaTwoTypesModel));
+        compositeDisposable.add(doaaDataSubscription);
+    }
+
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+    }
+
+    @Override
+    public void setView(BaseView view) {
+
+        doaaTypeTwoView = (DoaaTypeTwoView) view;
+    }
+
+    private DoaaTwoTypesModel getDoaaTypeObject(int doaaType) {
+
         if (doaaType == PointerOfDoaaType.DOAA_KHALAH) {
             titleDoaOne = "عند دخول الخلاء :";
             bodyDoaOne = "فعنْ زَيْدِ بْنِ أَرْقَمَ رضي الله عنه عَنْ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ :\n" +
@@ -134,12 +176,6 @@ public class DoaTypeTwoPresenterImpl implements DoaTypeTwoPresenter {
         doaaTwoTypesModel.setTitleDoaTwo(titleDoaTwo);
         doaaTwoTypesModel.setBodyDoaTwo(bodyDoaTwo);
         doaaTwoTypesModel.setDoaaTitleType(doaaTitleType);
-        doaaTypeTwoView.onDoaaReceivedData(doaaTwoTypesModel);
-    }
-
-    @Override
-    public void setView(BaseView view) {
-
-        doaaTypeTwoView = (DoaaTypeTwoView) view;
+        return doaaTwoTypesModel;
     }
 }

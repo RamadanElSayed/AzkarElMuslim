@@ -2,6 +2,7 @@ package com.azkar.azkarelmuslim.addingazkarpackage.views.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,7 +47,7 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_azkar_displaying, container, false);
         ButterKnife.bind(this, view);
@@ -83,8 +84,8 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
         if (RemovingAzkarSweetAlert != null) {
             RemovingAzkarSweetAlert.show();
 
-            Button keep = (Button) RemovingAzkarSweetAlert.findViewById(R.id.confirm_button);
-            Button end = (Button) RemovingAzkarSweetAlert.findViewById(R.id.cancel_button);
+            Button keep = RemovingAzkarSweetAlert.findViewById(R.id.confirm_button);
+            Button end = RemovingAzkarSweetAlert.findViewById(R.id.cancel_button);
             keep.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white));
             keep.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getContext()), R.drawable.round_red_bg));
             end.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white));
@@ -121,7 +122,7 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
     @OnClick(R.id.display_azkarBtn)
     void onBtnDisplayClick() {
         AzkarAddingFragment azkarAddingFragment = AzkarAddingFragment.getInstance();
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, true);
+        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, false);
 
     }
 
@@ -137,4 +138,12 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
         super.onStop();
         displayingAzkarPresneter.onStop();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        displayingAzkarPresneter.onDestroy();
+    }
+
+
 }

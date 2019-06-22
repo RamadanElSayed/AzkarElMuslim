@@ -1,4 +1,5 @@
 package com.azkar.azkarelmuslim.base;
+
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
@@ -6,10 +7,11 @@ import com.azkar.azkarelmuslim.database.AzkarDao;
 import com.azkar.azkarelmuslim.database.AzkarDataBase;
 
 import java.util.Locale;
+
 public class BaseApplication extends Application {
 
-   private AzkarDataBase azkarDataBase;
-   private static AzkarDao azkarDao;
+    private static AzkarDao azkarDao;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,9 +19,8 @@ public class BaseApplication extends Application {
         setRoamingData();
     }
 
-    private void setLocalLanguageArbic()
-    {
-        String languageToLoad  = "ar"; // your language
+    private void setLocalLanguageArbic() {
+        String languageToLoad = "ar"; // your language
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         android.content.res.Configuration config = new android.content.res.Configuration();
@@ -28,15 +29,14 @@ public class BaseApplication extends Application {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 
-    private void setRoamingData()
-    {
-        azkarDataBase = Room.databaseBuilder(getApplicationContext(),
+    private void setRoamingData() {
+        AzkarDataBase azkarDataBase = Room.databaseBuilder(getApplicationContext(),
                 AzkarDataBase.class, "azkar_db").build();
 
-        azkarDao=azkarDataBase.azkarDao();
+        azkarDao = azkarDataBase.azkarDao();
     }
-    public static AzkarDao getAzkarDoa()
-    {
-           return azkarDao;
+
+    public static AzkarDao getAzkarDoa() {
+        return azkarDao;
     }
 }

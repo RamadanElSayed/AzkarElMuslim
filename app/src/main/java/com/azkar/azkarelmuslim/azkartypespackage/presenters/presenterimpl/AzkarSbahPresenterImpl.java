@@ -7,15 +7,55 @@ import com.azkar.azkarelmuslim.base.BaseView;
 
 import java.util.ArrayList;
 
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 public class AzkarSbahPresenterImpl implements AzkarTypePresenter {
     private AzkarTypeView azkarTypeView;
+    private CompositeDisposable compositeDisposable;
 
     public AzkarSbahPresenterImpl(BaseView baseView) {
         setView(baseView);
+        compositeDisposable = new CompositeDisposable();
+    }
+
+    @Override
+    public void setView(BaseView view) {
+        azkarTypeView = (AzkarTypeView) view;
     }
 
     @Override
     public void getAllAzkarOfSpecificType() {
+
+        Observable<ArrayList<AzkarTypeModel>> azkatTypeObservable = Observable.just(
+                getAzkarNWMList()
+        );
+        Disposable azkarTypeSubscription = azkatTypeObservable.
+                subscribe(sbahModelArrayList -> azkarTypeView.onReceivedAzkarOfSpecificTypeList(sbahModelArrayList));
+        compositeDisposable.add(azkarTypeSubscription);
+    }
+
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+    }
+
+
+    private ArrayList<AzkarTypeModel> getAzkarNWMList() {
         ArrayList<AzkarTypeModel> sbahModelArrayList = new ArrayList<>();
         String x1 = "اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ";
         String x11 = "تكرار مرة واحدة";
@@ -93,12 +133,6 @@ public class AzkarSbahPresenterImpl implements AzkarTypePresenter {
         String x888 = "اللهم صل وسلم على نبينا محمد\" ";
         String x8888 = "عشر مرات";
         sbahModelArrayList.add(new AzkarTypeModel(x888, x8888));
-
-        azkarTypeView.onReceivedAzkarOfSpecificTypeList(sbahModelArrayList);
-    }
-
-    @Override
-    public void setView(BaseView view) {
-        azkarTypeView = (AzkarTypeView) view;
+        return sbahModelArrayList;
     }
 }
