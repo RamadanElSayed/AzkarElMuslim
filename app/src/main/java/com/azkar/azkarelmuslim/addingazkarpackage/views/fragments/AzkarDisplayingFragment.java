@@ -113,10 +113,7 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
                 acceptBtnText, endBtnText, true, sweetAlertDialog -> {
                 displayingAzkarPresneter.deleteAzkarOnClicked(azkarModelDB.getAzkarId());
 
-        }, sweetAlertDialog -> {
-                    dismissRemovingAzkarDialog();
-
-                });
+        }, sweetAlertDialog -> dismissRemovingAzkarDialog());
     }
 
     @OnClick(R.id.display_azkarBtn)
