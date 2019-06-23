@@ -71,9 +71,9 @@ public class AzkarAddingFragment extends BaseFragment implements SavingAzkarView
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onAzkarSavingDataDone() {
-        AzkarDisplayingFragment azkarDisplayingFragment = AzkarDisplayingFragment.getInstance();
+        azkarTextAdding.setText(null);
+        Messenger.showErrorMsg(getString(R.string.azkar_add_done), getActivity());
 
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarDisplayingFragment, false);
     }
 
     @Override

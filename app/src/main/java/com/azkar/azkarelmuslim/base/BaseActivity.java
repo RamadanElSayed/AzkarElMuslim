@@ -32,7 +32,6 @@ public class BaseActivity extends AppCompatActivity {
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(getContentViewId(), targetFragment, targetFragment.getClass().getName());
         if (addToBackStack) {
-            Log.v("fra",targetFragment.getClass().getName());
             ft.addToBackStack(targetFragment.getClass().getName());
         }
         ft.commit();

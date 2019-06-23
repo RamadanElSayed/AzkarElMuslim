@@ -27,7 +27,7 @@
     <string name="doaa_t3am_title">دعاء تناول الطعام والانتهاء منه</string>
     <string name="doaa_mzakra_title">دعاء المذاكرة</string>
     <string name="doaa_mlabs_title">دعاء ارتداء الملابس</string>
-    <string name="adding_title">أضافة</string>
+    <string name="adding_title">إضافة</string>
     <string name="adding_azkar_title">يمكنك إضافة أذكار وأدعية خاصة بك</string>
     <string name="adding_azkar_doaa_title">يمكنك إضافة أذكار وأدعية خاصة بك</string>
     <string name="save_azkar_title">حفظ</string>
@@ -45,7 +45,10 @@
     <string name="phone_me">التلفون 01149274517</string>
     <string name="azkar_elmuslim">أذكر الله فبذكر الله تطمئن القلوب</string>
     <string name="increase_font">IN</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="decrease_font">DE</string>
+    <string name="azkar_add_done">تم إضافة الذكر بنجاح يمكنك الإضافة مرة اخري !!</string>
 
 
 </resources>

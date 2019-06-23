@@ -122,7 +122,7 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
     @OnClick(R.id.display_azkarBtn)
     void onBtnDisplayClick() {
         AzkarAddingFragment azkarAddingFragment = AzkarAddingFragment.getInstance();
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, false);
+        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, true);
 
     }
 
