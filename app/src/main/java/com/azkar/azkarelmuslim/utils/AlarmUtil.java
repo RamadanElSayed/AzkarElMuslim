@@ -25,9 +25,6 @@ public class AlarmUtil {
         calendar.set(Calendar.HOUR_OF_DAY, value);
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND, 0);
-
-        /*manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-                8000 ,getRecieverPendingIntent());*/
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, getRecieverPendingIntent());
     }
@@ -36,10 +33,4 @@ public class AlarmUtil {
         Intent intent = new Intent(context, TodayAzkarReceiver.class);
         return PendingIntent.getBroadcast(context, 0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
-
-    public void cancelEarningAlarm(){
-        manager.cancel(getRecieverPendingIntent());
-
-    }
-
 }

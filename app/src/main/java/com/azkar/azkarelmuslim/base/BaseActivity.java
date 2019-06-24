@@ -54,4 +54,11 @@ public class BaseActivity extends AppCompatActivity {
     protected int getContentViewId() {
         return getRootView().getId();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        new AlarmUtil(BaseActivity.this).setEarningAlarm(8);
+        new AlarmUtil(BaseActivity.this).setEarningAlarm(20);
+    }
 }

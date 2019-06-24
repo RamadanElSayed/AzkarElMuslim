@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.azkar.azkarelmuslim">
+
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -12,12 +15,14 @@
         android:largeHeap="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        tools:replace="android:icon,android:supportsRtl"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".startpackageview.views.activities.StartAzkarActivity"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon,android:supportsRtl">
+        <activity android:name=".addingazkarpackage.views.activities.AzkarDisplayingActivity"></activity>
+        <activity android:name=".addingazkarpackage.views.activities.AddingAzkarActivity" />
+        <activity
+            android:name=".startpackageview.views.activities.StartAzkarActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

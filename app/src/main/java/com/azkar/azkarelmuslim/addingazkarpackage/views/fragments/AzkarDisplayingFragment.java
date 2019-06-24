@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.azkar.azkarelmuslim.R;
 import com.azkar.azkarelmuslim.addingazkarpackage.presenter.DisplayingAzkarPresneterImpl;
+import com.azkar.azkarelmuslim.addingazkarpackage.views.activities.AddingAzkarActivity;
 import com.azkar.azkarelmuslim.addingazkarpackage.views.adapters.DisplayingFragmentAdapter;
 import com.azkar.azkarelmuslim.addingazkarpackage.views.interfaces.DisplayingAzkarView;
 import com.azkar.azkarelmuslim.azkartypespackage.Views.adapters.AzkarSpecificTypeAdapter;
@@ -118,9 +119,10 @@ public class AzkarDisplayingFragment extends BaseFragment implements DisplayingA
 
     @OnClick(R.id.display_azkarBtn)
     void onBtnDisplayClick() {
-        AzkarAddingFragment azkarAddingFragment = AzkarAddingFragment.getInstance();
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, true);
+//        AzkarAddingFragment azkarAddingFragment = AzkarAddingFragment.getInstance();
+//        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).replaceCurrentFragment(azkarAddingFragment, true);
 
+        startActivity(AddingAzkarActivity.getLaunchIntent(getActivity()));
     }
 
     @Override

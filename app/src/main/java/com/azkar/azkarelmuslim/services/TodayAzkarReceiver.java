@@ -16,6 +16,6 @@ public class TodayAzkarReceiver extends BroadcastReceiver {
         NotificationUtils notificationUtils = new NotificationUtils(context);
         Intent earningIntent = new Intent(context,StartAzkarActivity.class);
         notificationUtils.showNotificationMessage(context.getString(R.string.azkar_elmuslim)
-                ,earningIntent,NotificationUtils.EARNING_ID);
+                ,earningIntent);
     }
 }

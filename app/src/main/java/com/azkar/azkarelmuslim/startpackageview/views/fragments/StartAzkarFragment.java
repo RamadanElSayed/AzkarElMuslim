@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.azkar.azkarelmuslim.R;
+import com.azkar.azkarelmuslim.addingazkarpackage.views.activities.AzkarDisplayingActivity;
 import com.azkar.azkarelmuslim.addingazkarpackage.views.fragments.AzkarDisplayingFragment;
 import com.azkar.azkarelmuslim.azkartypespackage.Views.fragments.AzkarMuslimTypeFragment;
 import com.azkar.azkarelmuslim.base.BaseFragment;
@@ -56,9 +57,10 @@ public class StartAzkarFragment extends BaseFragment {
 
     @OnClick(R.id.azkary_type_Btn)
     void onAzkaryMuslimBtnClicked() {
-        AzkarDisplayingFragment displayingFragment = AzkarDisplayingFragment.getInstance();
-        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).
-                replaceCurrentFragment(displayingFragment,true);
+        startActivity(AzkarDisplayingActivity.getLaunchIntent(getActivity()));
+//        AzkarDisplayingFragment displayingFragment = AzkarDisplayingFragment.getInstance();
+//        ((StartAzkarActivity) Objects.requireNonNull(getActivity())).
+//                replaceCurrentFragment(displayingFragment,true);
     }
 
     @OnClick(R.id.About_app_Btn)
