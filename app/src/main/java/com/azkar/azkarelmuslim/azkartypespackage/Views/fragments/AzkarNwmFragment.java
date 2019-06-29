@@ -10,6 +10,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.azkar.azkarelmuslim.R;
 import com.azkar.azkarelmuslim.azkartypespackage.Views.adapters.AzkarSpecificTypeAdapter;
@@ -23,6 +25,7 @@ import com.azkar.azkarelmuslim.utils.Messenger;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,9 @@ public class AzkarNwmFragment extends BaseFragment implements AzkarTypeView, OnI
     private AzkarSpecificTypeAdapter azkarSpecificTypeAdapter;
     private AzkarNwmPresenterImpl azkarNwmPresenter;
     private ArrayList<AzkarTypeModel> azkarTypeModels;
+    Random rand = new Random();
+    int randomNum = rand.nextInt((3 - 1) + 1) + 1;
+    int[] animationList = {R.anim.layout_animation_up_to_down, R.anim.layout_animation_right_to_left, R.anim.layout_animation_down_to_up, R.anim.layout_animation_left_to_right};
 
     public static AzkarNwmFragment getInstance() {
         return new AzkarNwmFragment();
@@ -55,6 +61,10 @@ public class AzkarNwmFragment extends BaseFragment implements AzkarTypeView, OnI
         azkarSpecificTypeAdapter = new AzkarSpecificTypeAdapter(getContext(), azkarTypeModels);
         azkarSpecificTypeAdapter.setOnItemClickListener(this);
         AzkarNwmRv.setItemAnimator(new DefaultItemAnimator());
+        LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(getContext(), animationList[randomNum]);
+        AzkarNwmRv.setLayoutAnimation(controller);
+        AzkarNwmRv.scheduleLayoutAnimation();
         AzkarNwmRv.setAdapter(azkarSpecificTypeAdapter);
         AzkarNwmRv.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         azkarSpecificTypeAdapter.notifyDataSetChanged();

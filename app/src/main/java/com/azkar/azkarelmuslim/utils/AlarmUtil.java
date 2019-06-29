@@ -26,7 +26,7 @@ public class AlarmUtil {
         calendar.set(Calendar.MINUTE,0);
         calendar.set(Calendar.SECOND, 0);
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, getRecieverPendingIntent());
+                AlarmManager.INTERVAL_HALF_DAY, getRecieverPendingIntent());
     }
 
     private PendingIntent getRecieverPendingIntent() {

@@ -17,7 +17,6 @@ public class DeviceBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
-            new AlarmUtil(context).setEarningAlarm(8);
             new AlarmUtil(context).setEarningAlarm(20);
         }
     }

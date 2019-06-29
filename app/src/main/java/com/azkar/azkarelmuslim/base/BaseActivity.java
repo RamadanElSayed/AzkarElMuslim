@@ -13,10 +13,10 @@ import com.azkar.azkarelmuslim.utils.AlarmUtil;
 
 public class BaseActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new AlarmUtil(BaseActivity.this).setEarningAlarm(8);
         new AlarmUtil(BaseActivity.this).setEarningAlarm(20);
     }
 
@@ -58,7 +58,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        new AlarmUtil(BaseActivity.this).setEarningAlarm(8);
         new AlarmUtil(BaseActivity.this).setEarningAlarm(20);
     }
 }

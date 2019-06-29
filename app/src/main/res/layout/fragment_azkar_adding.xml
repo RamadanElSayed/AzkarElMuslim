@@ -42,8 +42,12 @@ android:layout_height="fill_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bg_input_task"
         android:id="@+id/azkar_text_adding"
         android:layout_gravity="center_horizontal"
+       android:padding="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="#B5B5B5"
         android:inputType="text" />
 
     <Button

@@ -38,11 +38,11 @@
     <string name="remove">حذف</string>
     <string name="cancel">إلغاء</string>
     <string name="about_app">عن التطبيق :</string>
-    <string name="app_details">تطبيق للأذكارات والأدعية الاسلامية المتنوعة..ويتميز بخاصية تكبير وتصغير النص ..وايضا يمكنك إضافة الأذكار الخاصة بك ويمكنك ايضا مسحها اذا اردت ذلك</string>
     <string name="contact_me">للتواصل معي :-</string>
+    <string name="app_details">تطبيق للأذكارات والأدعية الاسلامية المتنوعة..ويتميز بخاصية تكبير وتصغير النص ..وايضا يمكنك إضافة الأذكار الخاصة بك ويمكنك ايضا حذفها اذا اردت ذلك كما اننا سوف نقوم بأرسال اشعارات لك كي نذكرك بذكر الله </string>
     <string name="name_me">مطور :رمضان سيدعيد</string>
     <string name="country_me">الدولة:مصر</string>
-    <string name="email_id">البريد الالكتروني ramadan.sayed@cis.asu.edu.eg</string>
+    <string name="email_id">البريد الالكتروني ramadan123sayed@gmail.com</string>
     <string name="phone_me">التلفون 01149274517</string>
     <string name="azkar_elmuslim">أذكر الله فبذكر الله تطمئن القلوب</string>
     <string name="increase_font">IN</string>

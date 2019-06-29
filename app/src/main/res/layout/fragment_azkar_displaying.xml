@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -35,18 +36,12 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:layout_marginTop="20dp"
-        app:cardUseCompatPadding="true">
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_azkaradding_rv"
-            android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:layout_height="wrap_content"/>
-    </android.support.v7.widget.CardView>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:layoutAnimation="@anim/layout_animation_right_to_left"
+            />
 </LinearLayout>
